@@ -17,7 +17,6 @@ export default function Hero() {
 
     return (
         <>
-            {/* <img src="https://i.imgur.com/htS3GSE.jpg" style={mystyle} /> */}
 
             <section className="text-gray-400 bg-gray-900 flex ">
                 <Tab className="bg-gray-900">

@@ -49,7 +49,11 @@ export default function ArtistCard() {
                     </div>
                     
                     <div>
-                        <input class="rounded-lg overflow-hidden h-2 w-full" type="range" min="1" max="100" value="50" />
+                        <input class="rounded-lg overflow-hidden h-2 w-full" type="range" 
+                            min="1" 
+                            max="100" 
+                            value="50" 
+                        />
                     </div>
                 </CardFooter>
             </div>
