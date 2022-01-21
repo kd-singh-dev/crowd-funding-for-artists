@@ -39,7 +39,7 @@ export default function NewForm() {
                     color="lightBlue"
                     size="lg"
                     outline={true}
-                    placeholder="Reqired Amount"
+                    placeholder="Require Amount"
                     
                 />
             </div>

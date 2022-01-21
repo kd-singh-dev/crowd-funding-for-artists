@@ -19,23 +19,23 @@ export default function ArtistCard(props) {
     const [showModal, setShowModal] = React.useState(false);
     const [siteName, setSiteName] = React.useState('');
     return (
-        <div className="">
+        <div className="" key={props.key}>
             <div class="max-w-sm mx-auto overflow-hidden bg-white rounded-lg shadow-lg dark:bg-gray-800 hover:scale-110 duration-150">
                 <CardImage
-                    src="https://i.imgur.com/htS3GSE.jpg"
+                    src={props.imgLink}
                     alt="Card Image"
                     className="h-60 w-full"
                 />
 
                 <div class="px-6 py-4">
-                    <h1 class="text-xl font-semibold text-gray-800 dark:text-white">Patterson johnson</h1>
+                    <h1 class="text-xl font-semibold text-gray-800 dark:text-white">{props.title}</h1>
 
-                    <p class="py-2 text-gray-700 dark:text-gray-400">Full Stack maker & UI / UX Designer , love hip hop music Author of Building UI.</p>
+                    <p class="py-2 text-gray-700 dark:text-gray-400">{props.elevatorPitch}</p>
 
-                    <div class="px-2 text-sm mt-2 mb-2 text-gray-700 dark:text-gray-200 float-left">patterson@example.com</div>
-                    <div class="px-2 text-sm mt-2 mb-2 text-gray-700 dark:text-gray-200 float-right">asmjajs</div>
-                    <div class="px-2 text-sm mt-2 mb-2 text-gray-700 dark:text-gray-200 float-left">patterson@example.com</div>
-                    <div class="px-2 text-sm mt-2 mb-2 text-gray-700 dark:text-gray-200 float-right">asmjajs</div>
+                    <div class="px-2 text-sm mt-2 mb-2 text-gray-700 dark:text-gray-200 float-left">Toal Require Amount</div>
+                    <div class="px-2 text-sm mt-2 mb-2 text-gray-700 dark:text-gray-200 float-right">{props.value} ETH</div>
+                    <div class="px-2 text-sm mt-2 mb-2 text-gray-700 dark:text-gray-200 float-left">Total Rasied Amount</div>
+                    <div class="px-2 text-sm mt-2 mb-2 text-gray-700 dark:text-gray-200 float-right">{props.rasied}  ETH</div>
                     
                 </div>
                 <CardFooter>
@@ -56,7 +56,7 @@ export default function ArtistCard(props) {
                                         control={<Checkbox icon={<FavoriteBorder />}
                                             checkedIcon={<Favorite />}
                                             name="checkedH" />}
-                                        label={props.likes ? parseInt(props.likes)+1 : ""}
+                                        label={props.likes ? parseInt(props.likes) : ""}
                                     />
                                 </div>
                             </div>
@@ -71,29 +71,24 @@ export default function ArtistCard(props) {
                         <input class="rounded-lg overflow-hidden h-2 w-full" type="range" 
                             min="1" 
                             max="100" 
-                            value="50" 
+                            value={props.rasied*100/props.value} 
                         />
                     </div>
                 </CardFooter>
             </div>
             <Modal size="lg" active={showModal} toggler={() => setShowModal(false)}>
                 <ModalHeader toggler={() => setShowModal(false)}>
-                    Modal Title
+                    {props.title}
                 </ModalHeader>
                 <ModalBody>
                     <p className="text-base leading-relaxed text-gray-600 font-normal text-justify p-5">
-                        Description Here
-                        I always felt like I could do anything. That’s the main thing people
-                        are controlled by! Thoughts- their perception of themselves! They're
-                        slowed down by their perception of themselves. If you're taught you
-                        can’t do anything, you won’t do anything. I was taught I could do
-                        everything.
+                        {props.description}
                     </p>
                     <p className="text-base leading-relaxed text-gray-600 font-normal text-justify p-5">
-                        Total Required Amount: ETH 100
+                        Total Required Amount: {props.value} ETH
                     </p>
                     <p className="text-base leading-relaxed text-gray-600 font-normal text-justify p-5">
-                        Total Raised Amount: ETH 100
+                        Total Raised Amount: {props.rasied} ETH
                     </p>
                     <div className="w-2/3">
                         <input class="rounded-lg overflow-hidden h-2 w-full" type="range" 
