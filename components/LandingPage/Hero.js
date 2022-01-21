@@ -10,6 +10,9 @@ import NewForm from "../NewForm";
 export default function Hero() {
     const [openTab, setOpenTab] = useState(1);
 
+    const [docs, setDocs] = useState([]);
+    const [loading, setLoading] = useState(false);
+    
     const mystyle = {
         width: '100%',
         height: '250px'
@@ -82,7 +85,7 @@ export default function Hero() {
 
                     <TabContent>
                         <TabPane active={openTab === 1 ? true : false}>
-                            <div class="grid grid-cols-3 gap-5">
+                            <div class="grid grid-cols-3 gap-10">
                                 <div>
                                     <ArtistCard likes="123"/>
                                 </div>

@@ -71,7 +71,7 @@ export default function NewForm() {
             </div>
             <div class="p-5 float-left">
                         <Button color="lightBlue" size="lg" ripple="light">
-                            Contribute
+                            Save
                         </Button>
             </div>
         </div>

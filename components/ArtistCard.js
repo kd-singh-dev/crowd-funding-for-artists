@@ -10,11 +10,17 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 import Favorite from '@material-ui/icons/Favorite';
 import FavoriteBorder from '@material-ui/icons/FavoriteBorder';
+import Modal from "@material-tailwind/react/Modal";
+import ModalHeader from "@material-tailwind/react/ModalHeader";
+import ModalBody from "@material-tailwind/react/ModalBody";
+import ModalFooter from "@material-tailwind/react/ModalFooter";
 
 export default function ArtistCard(props) {
+    const [showModal, setShowModal] = React.useState(false);
+    const [siteName, setSiteName] = React.useState('');
     return (
         <div className="">
-            <div class="max-w-sm mx-auto overflow-hidden bg-white rounded-lg shadow-lg dark:bg-gray-800">
+            <div class="max-w-sm mx-auto overflow-hidden bg-white rounded-lg shadow-lg dark:bg-gray-800 hover:scale-110 duration-150">
                 <CardImage
                     src="https://i.imgur.com/htS3GSE.jpg"
                     alt="Card Image"
@@ -30,13 +36,11 @@ export default function ArtistCard(props) {
                     <div class="px-2 text-sm mt-2 mb-2 text-gray-700 dark:text-gray-200 float-right">asmjajs</div>
                     <div class="px-2 text-sm mt-2 mb-2 text-gray-700 dark:text-gray-200 float-left">patterson@example.com</div>
                     <div class="px-2 text-sm mt-2 mb-2 text-gray-700 dark:text-gray-200 float-right">asmjajs</div>
-                    <div class="px-2 text-sm mt-2 mb-2 text-gray-700 dark:text-gray-200 float-left">patterson@example.com</div>
-                    <div class="px-2 text-sm mt-2 mb-2 text-gray-700 dark:text-gray-200 float-right">asmjajs</div>
-
+                    
                 </div>
                 <CardFooter>
                     <div class="p-2 float-left">
-                        <Button color="lightBlue" size="lg" ripple="light">
+                        <Button color="lightBlue" /*onClick={}*/ size="lg" ripple="light" >
                             Contribute
                         </Button>
                     </div>
@@ -52,13 +56,17 @@ export default function ArtistCard(props) {
                                         control={<Checkbox icon={<FavoriteBorder />}
                                             checkedIcon={<Favorite />}
                                             name="checkedH" />}
-                                        label={props.likes}
+                                        label={props.likes ? parseInt(props.likes)+1 : ""}
                                     />
                                 </div>
                             </div>
                         </div>
                     </div>
-
+                    <div class="p-2 w-1/2">
+                        <Button color="gray" size="lg" ripple="light" onClick={(e) => setShowModal(true)}>
+                            Read More..
+                        </Button>
+                    </div>
                     <div>
                         <input class="rounded-lg overflow-hidden h-2 w-full" type="range" 
                             min="1" 
@@ -68,6 +76,43 @@ export default function ArtistCard(props) {
                     </div>
                 </CardFooter>
             </div>
+            <Modal size="lg" active={showModal} toggler={() => setShowModal(false)}>
+                <ModalHeader toggler={() => setShowModal(false)}>
+                    Modal Title
+                </ModalHeader>
+                <ModalBody>
+                    <p className="text-base leading-relaxed text-gray-600 font-normal text-justify p-5">
+                        Description Here
+                        I always felt like I could do anything. That’s the main thing people
+                        are controlled by! Thoughts- their perception of themselves! They're
+                        slowed down by their perception of themselves. If you're taught you
+                        can’t do anything, you won’t do anything. I was taught I could do
+                        everything.
+                    </p>
+                    <p className="text-base leading-relaxed text-gray-600 font-normal text-justify p-5">
+                        Total Required Amount: ETH 100
+                    </p>
+                    <p className="text-base leading-relaxed text-gray-600 font-normal text-justify p-5">
+                        Total Raised Amount: ETH 100
+                    </p>
+                    <div className="w-2/3">
+                        <input class="rounded-lg overflow-hidden h-2 w-full" type="range" 
+                            min="1" 
+                            max="100" 
+                            value="50" 
+                        />
+                    </div>
+                </ModalBody>
+                <ModalFooter>
+                    <Button
+                        color="lightBlue"
+                        /*onClick={}*/
+                        ripple="light"
+                    >
+                        Contribute
+                    </Button>
+                </ModalFooter>
+            </Modal>
         </div>
     );
 }
