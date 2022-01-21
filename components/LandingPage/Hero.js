@@ -84,7 +84,7 @@ export default function Hero() {
                         <TabPane active={openTab === 1 ? true : false}>
                             <div class="grid grid-cols-3 gap-5">
                                 <div>
-                                    <ArtistCard />
+                                    <ArtistCard likes="123"/>
                                 </div>
                                 <div>
                                     <ArtistCard />
