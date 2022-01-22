@@ -18,10 +18,6 @@ export default function Home() {
       <Nav />
       <Hero />
       <About />
-      <Fetures />
-      <Video />
-      <Faq />
-      <Contact />
       <Footer />
     </>
   );

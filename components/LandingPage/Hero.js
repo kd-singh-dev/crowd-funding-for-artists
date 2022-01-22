@@ -23,7 +23,7 @@ export default function Hero() {
            "imgLink":"https://i.imgur.com/htS3GSE.jpg",
            "value":7000,
            "currentStatus":"ONGOING",
-           "rasied":5000,
+           "rasied":1000,
            "complete":"false",
            "approvalCount":4,
            "likes":9443
@@ -151,7 +151,7 @@ export default function Hero() {
                         </TabPane>
                         <TabPane active={openTab === 2 ? true : false}>
                             <div class="grid grid-cols-3 gap-5">
-                                <NewIdeas doc={docs}/>
+                                <NewIdeas doc={docs2}/>
                             </div>
                         </TabPane>
                         <TabPane active={openTab === 3 ? true : false}>
