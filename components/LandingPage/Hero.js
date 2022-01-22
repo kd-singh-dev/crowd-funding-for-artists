@@ -380,6 +380,7 @@ export default function Hero() {
         console.log(d);
       //   temp = d;
          console.log(temp);
+         setDocs(temp)
          setT(temp);
          // i++;
         
@@ -449,6 +450,7 @@ export default function Hero() {
         setDocs2(temp);
         setLoading(false);
         console.log(docs);
+        setDocs(docs);
     },[t]);
     const mystyle = {
         width: '100%',
