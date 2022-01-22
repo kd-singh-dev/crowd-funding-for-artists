@@ -3,6 +3,8 @@ import Modal from "@material-tailwind/react/Modal";
 import ModalHeader from "@material-tailwind/react/ModalHeader";
 import ModalBody from "@material-tailwind/react/ModalBody";
 import ModalFooter from "@material-tailwind/react/ModalFooter";
+import { ethers } from 'ethers'
+import Web3Modal from 'web3modal'
 import Button from "@material-tailwind/react/Button";
 import Input from "@material-tailwind/react/Input";
 import Link from 'next/link'
@@ -16,12 +18,27 @@ import PopoverBody from "@material-tailwind/react/PopoverBody";
 function ConnectMatamask(props) {
     const [showModal, setShowModal] = React.useState(false);
     const [siteName, setSiteName] = React.useState('');
+    async function connectWal() {
+        if(window.ethereum){
+            const web3Modal = new Web3Modal();
+            const connection = await web3Modal.connect();
+            const provider = new ethers.providers.Web3Provider(connection);
+            const signer = provider.getSigner();
+            console.log(await signer.getAddress());
+            const sign = await signer.signMessage("Connect to Money Money!!");
+            console.log(sign);
+        }
+        else{
+            alert("Install Metamask Wallet!!");
+        }
+    }
     return (
         <>
             <Button
                 color="green"
                 type="button"
-                onClick={(e) => setShowModal(true)}
+                // onClick={(e) => setShowModal(true)}
+                onClick={()=>{connectWal()}}
                 ripple="light"
             >
                 {props.text}
@@ -29,7 +46,7 @@ function ConnectMatamask(props) {
 
             <Modal size="sm" active={showModal} toggler={() => setShowModal(false)}>
                 <br></br>
-                <ModalHeader toggler={() => setShowModal(false)}>
+                <ModalHeader toggler={() => setShowModal(false)} >
                     Connect to Matamask
                 </ModalHeader>
                 <ModalBody>
