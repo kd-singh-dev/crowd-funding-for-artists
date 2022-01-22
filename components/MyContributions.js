@@ -4,11 +4,11 @@ import TabList from "@material-tailwind/react/TabList";
 import TabItem from "@material-tailwind/react/TabItem";
 import TabContent from "@material-tailwind/react/TabContent";
 import TabPane from "@material-tailwind/react/TabPane";
-import ArtistCard from "./ArtistCard";
+import ContributionCard from "./ContributionCard";
 
-export default function TrendingCard(props){
+export default function MyContributions(props){
     const [loading, setLoading] = useState(false);
-    const [temp, setTemp] = useState([]);
+    
     if(loading){
         return (
             <>
@@ -16,12 +16,12 @@ export default function TrendingCard(props){
             </>
         )
     }
-    
+    console.log(props.doc);
     return (
         <>
             {props.doc.map((doc, index) => {
                 return (
-                    <ArtistCard 
+                    <ContributionCard 
                         key={index}
                         title={doc.title}
                         elevatorPitch={doc.elevatorPitch}
@@ -33,6 +33,7 @@ export default function TrendingCard(props){
                         complete={doc.complete}
                         approvalCount={doc.approvalCount}
                         likes={doc.likes}
+                        requests={doc.requests}
                     />
                 )
             })}

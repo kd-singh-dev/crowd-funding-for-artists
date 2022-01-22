@@ -8,6 +8,8 @@ import ArtistCard from "../ArtistCard";
 import NewForm from "../NewForm";
 import TrendingCard from "../TrendingCard";
 import NewIdeas from "../NewIdeas";
+import MyCampaigns from "../MyCampaigns";
+import MyContributions from "../MyContributions";
 
 export default function Hero() {
     const [openTab, setOpenTab] = useState(1);
@@ -26,7 +28,24 @@ export default function Hero() {
            "rasied":1000,
            "complete":"false",
            "approvalCount":4,
-           "likes":9443
+           "likes":9443,
+           "requests":[
+               {
+                   "title":"a new title",
+                   "description":"a new description",
+                   "amount":1000,
+               },
+               {
+                   "title":"a new title",
+                   "description":"a new description",
+                   "amount":1000,
+               },
+               {
+                   "title":"a new title",
+                   "description":"a new description",
+                   "amount":1000,
+               },
+           ]
         },
         {
            "title":"a new coin",
@@ -38,7 +57,24 @@ export default function Hero() {
            "rasied":5000,
            "complete":"false",
            "approvalCount":4,
-           "likes":943
+           "likes":94,
+           "requests":[
+               {
+                   "title":"a new title",
+                   "description":"a new description",
+                   "amount":1000,
+               },
+               {
+                   "title":"a new title",
+                   "description":"a new description",
+                   "amount":1000,
+               },
+               {
+                   "title":"a new title",
+                   "description":"a new description",
+                   "amount":1000,
+               },
+           ]
         },
         {
            "title":"a new coin",
@@ -50,7 +86,24 @@ export default function Hero() {
            "rasied":5000,
            "complete":"false",
            "approvalCount":4,
-           "likes":4343
+           "likes":43,
+           "requests":[
+               {
+                   "title":"a new title",
+                   "description":"a new description",
+                   "amount":1000,
+               },
+               {
+                   "title":"a new title",
+                   "description":"a new description",
+                   "amount":1000,
+               },
+               {
+                   "title":"a new title",
+                   "description":"a new description",
+                   "amount":1000,
+               },
+           ]
         },
         {
            "title":"a new coin",
@@ -62,7 +115,24 @@ export default function Hero() {
            "rasied":5000,
            "complete":"false",
            "approvalCount":4,
-           "likes":343
+           "likes":93,
+           "requests":[
+               {
+                   "title":"a new title",
+                   "description":"a new description",
+                   "amount":1000,
+               },
+               {
+                   "title":"a new title",
+                   "description":"a new description",
+                   "amount":1000,
+               },
+               {
+                   "title":"a new title",
+                   "description":"a new description",
+                   "amount":1000,
+               },
+           ]
         }
         
      ];
@@ -156,24 +226,7 @@ export default function Hero() {
                         </TabPane>
                         <TabPane active={openTab === 3 ? true : false}>
                             <div class="grid grid-cols-3 gap-5">
-                                <div>
-                                    <ArtistCard />
-                                </div>
-                                <div>
-                                    <ArtistCard />
-                                </div>
-                                <div>
-                                    <ArtistCard />
-                                </div>
-                                <div>
-                                    <ArtistCard />
-                                </div>
-                                <div>
-                                    <ArtistCard />
-                                </div>
-                                <div>
-                                    <ArtistCard />
-                                </div>
+                                <MyContributions doc={docs}/>
                             </div>
                         </TabPane>
                         <TabPane active={openTab === 4 ? true : false}>
@@ -182,25 +235,8 @@ export default function Hero() {
                             </div>
                         </TabPane>
                         <TabPane active={openTab === 5 ? true : false}>
-                        <div class="grid grid-cols-3 gap-5">
-                                <div>
-                                    <ArtistCard />
-                                </div>
-                                <div>
-                                    <ArtistCard />
-                                </div>
-                                <div>
-                                    <ArtistCard />
-                                </div>
-                                <div>
-                                    <ArtistCard />
-                                </div>
-                                <div>
-                                    <ArtistCard />
-                                </div>
-                                <div>
-                                    <ArtistCard />
-                                </div>
+                            <div class="grid grid-cols-3 gap-5">
+                                <MyCampaigns doc={docs}/>
                             </div>
                         </TabPane>
                     </TabContent>
