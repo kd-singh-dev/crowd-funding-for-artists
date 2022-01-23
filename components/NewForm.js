@@ -16,6 +16,7 @@ export default function NewForm() {
     const [img, setImg] = useState();
     const [amount, setAmount] = useState(0);
     const [status, setStatus] = useState(0);
+    const [btd,setbtd] = useState(true);
 
     const cfAbi = [
         {
@@ -108,6 +109,7 @@ export default function NewForm() {
         setStatus(event.target.value)
     };
     const handleFileChange = async (event) => {
+        setbtd(true);
         //setImg(event.target.file(0))
         
             const file = event.target.files[0];
@@ -122,6 +124,8 @@ export default function NewForm() {
             } catch (error) {
                 console.log('Error uploading file:', error);
             }
+
+            setbtd(false);
         
     };
 
@@ -233,7 +237,7 @@ export default function NewForm() {
                 </div>
             </div>
             <div class="p-5 float-left">
-                <Button type="submit" color="lightBlue" size="lg" ripple="light">
+                <Button type="submit" disabled={btd} color="lightBlue" size="lg" ripple="light">
                     Save
                 </Button>
             </div>
