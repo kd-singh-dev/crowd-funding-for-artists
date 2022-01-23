@@ -2,14 +2,95 @@ import React, { useEffect, useState } from "react";
 import Input from "@material-tailwind/react/Input";
 import Textarea from "@material-tailwind/react/Textarea";
 import Button from "@material-tailwind/react/Button";
+import { create as ipfsHttpClient } from 'ipfs-http-client'
+
+import { ethers } from 'ethers'
+import Web3Modal from 'web3modal'
+
 
 export default function NewForm() {
+    const client = ipfsHttpClient('https://ipfs.infura.io:5001/api/v0')
     const [title, setTitle] = useState('');
     const [ePitch, setEPitch] = useState('');
     const [des, setDes] = useState('');
     const [img, setImg] = useState();
     const [amount, setAmount] = useState(0);
     const [status, setStatus] = useState(0);
+
+    const cfAbi = [
+        {
+            "inputs": [
+                {
+                    "internalType": "string",
+                    "name": "title",
+                    "type": "string"
+                },
+                {
+                    "internalType": "string",
+                    "name": "desc",
+                    "type": "string"
+                },
+                {
+                    "internalType": "uint256",
+                    "name": "goal",
+                    "type": "uint256"
+                },
+                {
+                    "internalType": "string",
+                    "name": "pic",
+                    "type": "string"
+                },
+                {
+                    "internalType": "string",
+                    "name": "pitch",
+                    "type": "string"
+                }
+            ],
+            "name": "createCampaign",
+            "outputs": [],
+            "stateMutability": "nonpayable",
+            "type": "function"
+        },
+        {
+            "inputs": [
+                {
+                    "internalType": "uint256",
+                    "name": "",
+                    "type": "uint256"
+                }
+            ],
+            "name": "deployedContract",
+            "outputs": [
+                {
+                    "internalType": "address",
+                    "name": "",
+                    "type": "address"
+                }
+            ],
+            "stateMutability": "view",
+            "type": "function"
+        },
+        {
+            "inputs": [
+                {
+                    "internalType": "address",
+                    "name": "",
+                    "type": "address"
+                }
+            ],
+            "name": "listArtist",
+            "outputs": [
+                {
+                    "internalType": "address",
+                    "name": "",
+                    "type": "address"
+                }
+            ],
+            "stateMutability": "view",
+            "type": "function"
+        }
+    ]
+    const cfAdd = "0x2d74e092363578eDeaf89c90257091b828E39Ad4";
 
     const handleTitleChange = event => {
         setTitle(event.target.value)
@@ -26,13 +107,35 @@ export default function NewForm() {
     const handleStatusChange = event => {
         setStatus(event.target.value)
     };
-    const handleFileChange = event => {
-        setImg(event.target.file(0))
+    const handleFileChange = async (event) => {
+        //setImg(event.target.file(0))
+        
+            const file = event.target.files[0];
+            try {
+                const added = await client.add(
+                    file, {
+                    progress: (prog) => console.log(`received: ${prog}`)
+                });
+                const url = `https://ipfs.infura.io/ipfs/${added.path}`;
+                setImg(url)
+                console.log(url);
+            } catch (error) {
+                console.log('Error uploading file:', error);
+            }
+        
     };
 
-    const handleSubmit = event => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
-        console.log(title, ePitch, des, amount, status);
+        console.log(title, ePitch, des, amount, status,img);
+        const web3Modal = new Web3Modal();
+        const connection = await web3Modal.connect();
+        const provider = new ethers.providers.Web3Provider(connection);
+        const signer = provider.getSigner();
+        console.log(signer);
+
+        const cfContract = new ethers.Contract(cfAdd, cfAbi, signer);
+        const c = await cfContract.createCampaign(title,des,amount,img,ePitch);
     };
     return (
         <form onSubmit={handleSubmit}>

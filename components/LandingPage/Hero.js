@@ -331,14 +331,17 @@ export default function Hero() {
     const cfAdd = "0x2d74e092363578eDeaf89c90257091b828E39Ad4";
    var d = [];
    var temp = [];
+
+   let signer;
+   
    useEffect(async ()=> {
    
-        let signer;
+        
         
         const web3Modal = new Web3Modal();
         const connection = await web3Modal.connect();
         const provider = new ethers.providers.Web3Provider(connection);
-         signer = provider.getSigner();
+        signer = provider.getSigner();
             
         
    
@@ -373,6 +376,7 @@ export default function Hero() {
             "imgLink": data[7],
             "value": data[2].toString(),
             "currentStatus": "ONGOING",
+            "complete": arr[a],
             "rasied": data[3].toString(),
             "likes": data[5].toString()
          })
@@ -387,7 +391,74 @@ export default function Hero() {
     
     
        },[update])
+       const myCamp = async () => {
+           console.log("My camp");
+            const web3Modal = new Web3Modal();
+            const connection = await web3Modal.connect();
+            const provider = new ethers.providers.Web3Provider(connection);
+            signer = provider.getSigner();
+                
+            const temp = [];
+        
+   
+            const cfContract = new ethers.Contract(cfAdd, cfAbi, signer);
+            
+            
+            const arr = [];
+            //
+            console.log(cfContract);
+            try{
+             const i = 0;
+             while(i>-1){
+                const c = await cfContract.deployedContract(i);
+                arr.push(c);
+                console.log(c);
+                i++;
+                
+             }
+             
+            }catch(err){
+     
+            }
+            let campCol = [];
+            for(let y=0;y<arr.length;y++){
+                console.log("Mycamp:",arr[y]);
+                const artistAdd = await cfContract.listArtist(arr[y]);
+                const Address = await signer.getAddress();
+                console.log("Mycamp:",artistAdd);
+                console.log("Mycamp:",Address);
+                if(artistAdd == Address){
+                    campCol.push(arr[y])
+                }
 
+            }
+            console.log("My camp add",campCol);
+
+            for(let a = 0;a<campCol.length;a++){
+                //console.log(arr[a]);
+                const campContract = new ethers.Contract(campCol[a],campAbi,signer);
+                const data = await campContract.c(); 
+                console.log(data);
+                // d = [];
+                temp.push({
+                 "title": data[0],
+                 "elevatorPitch": data[8],
+                 "description": data[1],
+                 "imgLink": data[7],
+                 "value": data[2].toString(),
+                 "currentStatus": "ONGOING",
+                 "rasied": data[3].toString(),
+                 "complete": campCol[a],
+                 "likes": data[5].toString()
+              })
+             }
+             console.log(d);
+           //   temp = d;
+              console.log(temp);
+              setDocs2(temp)
+           //   setT(temp);
+            
+       }
     
   // console.log(await t())}
     //console.log(d);
@@ -447,10 +518,11 @@ export default function Hero() {
     useEffect(() => {
         setLoading(true);
         setDocs(temp);
-        setDocs2(temp);
+        //setDocs2(temp);
         setLoading(false);
         console.log(docs);
         setDocs(docs);
+
     },[t]);
     const mystyle = {
         width: '100%',
@@ -513,6 +585,7 @@ export default function Hero() {
                                 onClick={(e) => {
                                     e.preventDefault();
                                     setOpenTab(5);
+                                    myCamp();
                                 }}
                                 ripple="light"
                                 active={openTab === 5 ? true : false}
@@ -526,7 +599,7 @@ export default function Hero() {
                     <TabContent>
                         <TabPane active={openTab === 1 ? true : false}>
                             <div class="grid grid-cols-3 gap-10">
-                                <TrendingCard doc={docs}/>
+                                <TrendingCard doc={docs} />
                             </div>
                         </TabPane>
                         <TabPane active={openTab === 2 ? true : false}>
