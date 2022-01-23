@@ -413,7 +413,7 @@ export default function CampaignsCard(props) {
                                 color="lightBlue"
                                 size="lg"
                                 outline={true}
-                                placeholder="Title"  
+                                placeholder="Address"  
                                 name="title"  
                                 onChange={handleTitleChange}                
                             />
