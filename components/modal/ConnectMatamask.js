@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Modal from "@material-tailwind/react/Modal";
 import ModalHeader from "@material-tailwind/react/ModalHeader";
 import ModalBody from "@material-tailwind/react/ModalBody";
@@ -18,6 +18,7 @@ import PopoverBody from "@material-tailwind/react/PopoverBody";
 function ConnectMatamask(props) {
     const [showModal, setShowModal] = React.useState(false);
     const [siteName, setSiteName] = React.useState('');
+
     async function connectWal() {
         if(window.ethereum){
             const web3Modal = new Web3Modal();

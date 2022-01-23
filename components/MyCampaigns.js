@@ -4,11 +4,11 @@ import TabList from "@material-tailwind/react/TabList";
 import TabItem from "@material-tailwind/react/TabItem";
 import TabContent from "@material-tailwind/react/TabContent";
 import TabPane from "@material-tailwind/react/TabPane";
-import ArtistCard from "./ArtistCard";
+import CampaignsCard from "./CampaignsCard";
 
-export default function TrendingCard(props){
+export default function MyCampaigns(props){
     const [loading, setLoading] = useState(false);
-    const [temp, setTemp] = useState([]);
+    
     if(loading){
         return (
             <>
@@ -21,7 +21,7 @@ export default function TrendingCard(props){
         <>
             {props.doc.map((doc, index) => {
                 return (
-                    <ArtistCard 
+                    <CampaignsCard 
                         key={index}
                         title={doc.title}
                         elevatorPitch={doc.elevatorPitch}

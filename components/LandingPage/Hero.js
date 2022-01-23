@@ -8,6 +8,8 @@ import ArtistCard from "../ArtistCard";
 import NewForm from "../NewForm";
 import TrendingCard from "../TrendingCard";
 import NewIdeas from "../NewIdeas";
+import MyCampaigns from "../MyCampaigns";
+import MyContributions from "../MyContributions";
 
 import { ethers } from 'ethers'
 import Web3Modal from 'web3modal'
@@ -434,6 +436,7 @@ export default function Hero() {
             }
             console.log("My camp add",campCol);
 
+<<<<<<< HEAD
             for(let a = 0;a<campCol.length;a++){
                 //console.log(arr[a]);
                 const campContract = new ethers.Contract(campCol[a],campAbi,signer);
@@ -460,61 +463,132 @@ export default function Hero() {
             
        }
     
+=======
+    /*
+>>>>>>> 52faee89493b75f47f2d1c2a2ef520b4ad159f3a
   // console.log(await t())}
     //console.log(d);
     
 
      //[
-    //     {
-    //        "title":"a new coin",
-    //        "elevatorPitch":"it will change the world",
-    //        "description":"it will change the world by making everyone fool it will change the world by making everyone fool it will change the world by making everyone fool it will change the world by making everyone fool it will change the world by making everyone fool",
-    //        "imgLink":"https://i.imgur.com/htS3GSE.jpg",
-    //        "value":7000,
-    //        "currentStatus":"ONGOING",
-    //        "rasied":1000,
-    //        "complete":"false",
-    //        "approvalCount":4,
-    //        "likes":9443
-    //     },
-    //     {
-    //        "title":"a new coin",
-    //        "elevatorPitch":"it will change the world",
-    //        "description":"it will change the world by making everyone fool it will change the world by making everyone fool it will change the world by making everyone fool it will change the world by making everyone fool it will change the world by making everyone fool",
-    //        "imgLink":"https://i.imgur.com/htS3GSE.jpg",
-    //        "value":7000,
-    //        "currentStatus":"ONGOING",
-    //        "rasied":5000,
-    //        "complete":"false",
-    //        "approvalCount":4,
-    //        "likes":943
-    //     },
-    //     {
-    //        "title":"a new coin",
-    //        "elevatorPitch":"it will change the world",
-    //        "description":"it will change the world by making everyone fool it will change the world by making everyone fool it will change the world by making everyone fool it will change the world by making everyone fool it will change the world by making everyone fool",
-    //        "imgLink":"https://i.imgur.com/htS3GSE.jpg",
-    //        "value":7000,
-    //        "currentStatus":"ONGOING",
-    //        "rasied":5000,
-    //        "complete":"false",
-    //        "approvalCount":4,
-    //        "likes":4343
-    //     },
-    //     {
-    //        "title":"a new coin",
-    //        "elevatorPitch":"it will change the world",
-    //        "description":"it will change the world by making everyone fool it will change the world by making everyone fool it will change the world by making everyone fool it will change the world by making everyone fool it will change the world by making everyone fool",
-    //        "imgLink":"https://i.imgur.com/htS3GSE.jpg",
-    //        "value":7000,
-    //        "currentStatus":"ONGOING",
-    //        "rasied":5000,
-    //        "complete":"false",
-    //        "approvalCount":4,
-    //        "likes":343
-    //     }
+    //  {
+    //        
+    //     "title":"a new coin",
+           "elevatorPitch":"it will change the world",
+           "description":"it will change the world by making everyone fool it will change the world by making everyone fool it will change the world by making everyone fool it will change the world by making everyone fool it will change the world by making everyone fool",
+           "imgLink":"https://i.imgur.com/htS3GSE.jpg",
+           "value":7000,
+           "currentStatus":"ONGOING",
+           "rasied":1000,
+           "complete":"false",
+           "approvalCount":4,
+           "likes":9443,
+           "requests":[
+               {
+                   "title":"a new title",
+                   "description":"a new description",
+                   "amount":1000,
+               },
+               {
+                   "title":"a new title",
+                   "description":"a new description",
+                   "amount":1000,
+               },
+               {
+                   "title":"a new title",
+                   "description":"a new description",
+                   "amount":1000,
+               },
+           ]
+        },
+        {
+           "title":"a new coin",
+           "elevatorPitch":"it will change the world",
+           "description":"it will change the world by making everyone fool it will change the world by making everyone fool it will change the world by making everyone fool it will change the world by making everyone fool it will change the world by making everyone fool",
+           "imgLink":"https://i.imgur.com/htS3GSE.jpg",
+           "value":7000,
+           "currentStatus":"ONGOING",
+           "rasied":5000,
+           "complete":"false",
+           "approvalCount":4,
+           "likes":94,
+           "requests":[
+               {
+                   "title":"a new title",
+                   "description":"a new description",
+                   "amount":1000,
+               },
+               {
+                   "title":"a new title",
+                   "description":"a new description",
+                   "amount":1000,
+               },
+               {
+                   "title":"a new title",
+                   "description":"a new description",
+                   "amount":1000,
+               },
+           ]
+        },
+        {
+           "title":"a new coin",
+           "elevatorPitch":"it will change the world",
+           "description":"it will change the world by making everyone fool it will change the world by making everyone fool it will change the world by making everyone fool it will change the world by making everyone fool it will change the world by making everyone fool",
+           "imgLink":"https://i.imgur.com/htS3GSE.jpg",
+           "value":7000,
+           "currentStatus":"ONGOING",
+           "rasied":5000,
+           "complete":"false",
+           "approvalCount":4,
+           "likes":43,
+           "requests":[
+               {
+                   "title":"a new title",
+                   "description":"a new description",
+                   "amount":1000,
+               },
+               {
+                   "title":"a new title",
+                   "description":"a new description",
+                   "amount":1000,
+               },
+               {
+                   "title":"a new title",
+                   "description":"a new description",
+                   "amount":1000,
+               },
+           ]
+        },
+        {
+           "title":"a new coin",
+           "elevatorPitch":"it will change the world",
+           "description":"it will change the world by making everyone fool it will change the world by making everyone fool it will change the world by making everyone fool it will change the world by making everyone fool it will change the world by making everyone fool",
+           "imgLink":"https://i.imgur.com/htS3GSE.jpg",
+           "value":7000,
+           "currentStatus":"ONGOING",
+           "rasied":5000,
+           "complete":"false",
+           "approvalCount":4,
+           "likes":93,
+           "requests":[
+               {
+                   "title":"a new title",
+                   "description":"a new description",
+                   "amount":1000,
+               },
+               {
+                   "title":"a new title",
+                   "description":"a new description",
+                   "amount":1000,
+               },
+               {
+                   "title":"a new title",
+                   "description":"a new description",
+                   "amount":1000,
+               },
+           ]
         
-    //  ];
+    //  ];*/
     useEffect(() => {
         setLoading(true);
         setDocs(temp);
@@ -609,24 +683,7 @@ export default function Hero() {
                         </TabPane>
                         <TabPane active={openTab === 3 ? true : false}>
                             <div class="grid grid-cols-3 gap-5">
-                                <div>
-                                    <ArtistCard />
-                                </div>
-                                <div>
-                                    <ArtistCard />
-                                </div>
-                                <div>
-                                    <ArtistCard />
-                                </div>
-                                <div>
-                                    <ArtistCard />
-                                </div>
-                                <div>
-                                    <ArtistCard />
-                                </div>
-                                <div>
-                                    <ArtistCard />
-                                </div>
+                                <MyContributions doc={docs}/>
                             </div>
                         </TabPane>
                         <TabPane active={openTab === 4 ? true : false}>
@@ -635,25 +692,8 @@ export default function Hero() {
                             </div>
                         </TabPane>
                         <TabPane active={openTab === 5 ? true : false}>
-                        <div class="grid grid-cols-3 gap-5">
-                                <div>
-                                    <ArtistCard />
-                                </div>
-                                <div>
-                                    <ArtistCard />
-                                </div>
-                                <div>
-                                    <ArtistCard />
-                                </div>
-                                <div>
-                                    <ArtistCard />
-                                </div>
-                                <div>
-                                    <ArtistCard />
-                                </div>
-                                <div>
-                                    <ArtistCard />
-                                </div>
+                            <div class="grid grid-cols-3 gap-5">
+                                <MyCampaigns doc={docs}/>
                             </div>
                         </TabPane>
                     </TabContent>
