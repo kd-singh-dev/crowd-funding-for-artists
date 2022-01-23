@@ -21,6 +21,7 @@ export default function Hero() {
     const [docs2, setDocs2] = useState([]);
     const [update,setUpdate] = useState(0);
     const [loading, setLoading] = useState(false);
+    const [campLoad,setcampLoad] = useState(false);
     const [t,setT] = useState([]);
     const campAbi = [
         {
@@ -397,13 +398,14 @@ export default function Hero() {
     
        },[update])
        const myCamp = async () => {
+           setcampLoad(true);
            console.log("My camp");
             const web3Modal = new Web3Modal();
             const connection = await web3Modal.connect();
             const provider = new ethers.providers.Web3Provider(connection);
             signer = provider.getSigner();
                 
-            const temp = [];
+            const mytemp = [];
         
    
             const cfContract = new ethers.Contract(cfAdd, cfAbi, signer);
@@ -445,7 +447,7 @@ export default function Hero() {
                 const data = await campContract.c(); 
                 console.log(data);
                 // d = [];
-                temp.push({
+                mytemp.push({
                  "title": data[0],
                  "elevatorPitch": data[8],
                  "description": data[1],
@@ -459,8 +461,9 @@ export default function Hero() {
              }
              console.log(d);
            //   temp = d;
-              console.log(temp);
-              setDocs2(temp)
+              console.log(mytemp);
+              setDocs2(mytemp)
+              setcampLoad(false);
            //   setT(temp);
             
        }
@@ -684,7 +687,7 @@ export default function Hero() {
                         </TabPane>
                         <TabPane active={openTab === 5 ? true : false}>
                             <div class="grid grid-cols-3 gap-5">
-                                <MyCampaigns doc={docs} loading={loading}/>
+                                <MyCampaigns doc={docs2} loading={campLoad}/>
                             </div>
                         </TabPane>
                     </TabContent>
