@@ -25,7 +25,23 @@ export default function CampaignsCard(props) {
     const [title, setTitle] = useState('');
     const [des, setDes] = useState('');
     const [amount, setAmount] = useState(0);
+    const [liked, setLiked] = useState(false);
+    const [likes, setLikes] = useState(0);
     
+    useEffect(() => {
+        setLikes(props.likes);
+    },[]);
+
+    const handleLike = event => {
+
+        if(liked)
+        {
+            setLikes(likes - 1);
+        }
+        else
+            setLikes(parseInt(likes) + 1);
+        setLiked(!liked);
+    };
     const handleTitleChange = event => {
         setTitle(event.target.value)
     };
@@ -62,8 +78,8 @@ export default function CampaignsCard(props) {
                 </div>
                 <CardFooter>
                     <div class="p-2 float-left">
-                        <Button color="lightBlue" /*onClick={}*/ size="lg" ripple="light" >
-                            Contribute
+                        <Button color="lightBlue" onClick={(e) => setShowModal(true)} size="lg" ripple="light" >
+                            Read More..
                         </Button>
                     </div>
                     <div class="px-2 text-sm mt-2 mb-2 text-gray-700 dark:text-gray-200 float-right">
@@ -74,22 +90,17 @@ export default function CampaignsCard(props) {
                                     display: 'block',
                                     width: 'fit-content'
                                 }}>
-                                    <FormControlLabel
+                                    <FormControlLabel onClick={handleLike}
                                         control={<Checkbox icon={<FavoriteBorder />}
                                             checkedIcon={<Favorite />}
                                             name="checkedH" />}
-                                        label={props.likes ? parseInt(props.likes) : ""}
+                                        label={likes}
                                     />
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="">
-                        <div class="p-2 w-1/2 ">
-                            <Button color="gray" size="lg" ripple="light" onClick={(e) => setShowModal(true)}>
-                                Read More..
-                            </Button>
-                        </div>
                         <div class="p-2 w-1/2 ">
                             <Button color="amber" size="lg" ripple="light" onClick={(e) => setShowModal2(true)}>
                                 Request
