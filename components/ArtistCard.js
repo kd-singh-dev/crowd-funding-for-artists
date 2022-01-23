@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import Card from "@material-tailwind/react/Card";
 import CardImage from "@material-tailwind/react/CardImage";
 import CardBody from "@material-tailwind/react/CardBody";
@@ -22,7 +22,23 @@ import Web3Modal from 'web3modal'
 export default function ArtistCard(props) {
     const [showModal, setShowModal] = React.useState(false);
     const [siteName, setSiteName] = React.useState('');
+    const [liked, setLiked] = useState(false);
+    const [likes, setLikes] = useState(0);
+    
+    useEffect(() => {
+        setLikes(props.likes);
+    },[]);
 
+    const handleLike = event => {
+
+        if(liked)
+        {
+            setLikes(likes - 1);
+        }
+        else
+            setLikes(parseInt(likes) + 1);
+        setLiked(!liked);
+    };
     const campAbi = [
         {
             "inputs": [
@@ -306,11 +322,11 @@ export default function ArtistCard(props) {
                                     display: 'block',
                                     width: 'fit-content'
                                 }}>
-                                    <FormControlLabel
+                                    <FormControlLabel onClick={handleLike}
                                         control={<Checkbox icon={<FavoriteBorder />}
                                             checkedIcon={<Favorite />}
                                             name="checkedH" />}
-                                        label={props.likes ? parseInt(props.likes) : ""}
+                                        label={likes}
                                     />
                                 </div>
                             </div>

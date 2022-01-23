@@ -25,20 +25,22 @@ export default function ContributionCard(props) {
     const [title, setTitle] = useState('');
     const [des, setDes] = useState('');
     const [amount, setAmount] = useState(0);
+    const [liked, setLiked] = useState(false);
+    const [likes, setLikes] = useState(0);
     
-    const handleTitleChange = event => {
-        setTitle(event.target.value)
-    };
-    const handleDesChange = event => {
-        setDes(event.target.value)
-    };
-    const handleAmountChange = event => {
-        setAmount(event.target.value)
-    };
+    useEffect(() => {
+        setLikes(props.likes);
+    },[]);
 
-    const handleSubmit = event => {
-        event.preventDefault();
-        console.log(title, des, amount);
+    const handleLike = event => {
+
+        if(liked)
+        {
+            setLikes(likes - 1);
+        }
+        else
+            setLikes(parseInt(likes) + 1);
+        setLiked(!liked);
     };
 
     const renderModal = () => {
@@ -121,11 +123,11 @@ export default function ContributionCard(props) {
                                     display: 'block',
                                     width: 'fit-content'
                                 }}>
-                                    <FormControlLabel
+                                    <FormControlLabel onClick={handleLike}
                                         control={<Checkbox icon={<FavoriteBorder />}
                                             checkedIcon={<Favorite />}
                                             name="checkedH" />}
-                                        label={props.likes ? parseInt(props.likes) : ""}
+                                        label={likes}
                                     />
                                 </div>
                             </div>

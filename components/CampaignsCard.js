@@ -25,7 +25,23 @@ export default function CampaignsCard(props) {
     const [title, setTitle] = useState('');
     const [des, setDes] = useState('');
     const [amount, setAmount] = useState(0);
+    const [liked, setLiked] = useState(false);
+    const [likes, setLikes] = useState(0);
     
+    useEffect(() => {
+        setLikes(props.likes);
+    },[]);
+
+    const handleLike = event => {
+
+        if(liked)
+        {
+            setLikes(likes - 1);
+        }
+        else
+            setLikes(parseInt(likes) + 1);
+        setLiked(!liked);
+    };
     const handleTitleChange = event => {
         setTitle(event.target.value)
     };
@@ -74,11 +90,11 @@ export default function CampaignsCard(props) {
                                     display: 'block',
                                     width: 'fit-content'
                                 }}>
-                                    <FormControlLabel
+                                    <FormControlLabel onClick={handleLike}
                                         control={<Checkbox icon={<FavoriteBorder />}
                                             checkedIcon={<Favorite />}
                                             name="checkedH" />}
-                                        label={props.likes ? parseInt(props.likes) : ""}
+                                        label={likes}
                                     />
                                 </div>
                             </div>
