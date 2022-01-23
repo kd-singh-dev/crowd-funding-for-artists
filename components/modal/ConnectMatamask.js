@@ -16,8 +16,7 @@ import PopoverBody from "@material-tailwind/react/PopoverBody";
 
 
 function ConnectMatamask(props) {
-    const [showModal, setShowModal] = React.useState(false);
-    const [siteName, setSiteName] = React.useState('');
+    const [connected, setConnected] = React.useState(false);
 
     async function connectWal() {
         if(window.ethereum){
@@ -28,6 +27,7 @@ function ConnectMatamask(props) {
             console.log(await signer.getAddress());
             const sign = await signer.signMessage("Connect to Money Money!!");
             console.log(sign);
+            setConnected(true);
         }
         else{
             alert("Install Metamask Wallet!!");
@@ -42,42 +42,8 @@ function ConnectMatamask(props) {
                 onClick={()=>{connectWal()}}
                 ripple="light"
             >
-                {props.text}
+                {(connected) ? "Metamask Connected" : "Connect Metamask"}
             </Button>
-
-            <Modal size="sm" active={showModal} toggler={() => setShowModal(false)}>
-                <br></br>
-                <ModalHeader toggler={() => setShowModal(false)} >
-                    Connect to Matamask
-                </ModalHeader>
-                <ModalBody>
-                <p className="text-base leading-relaxed text-gray-600 font-normal">
-                        I always felt like I could do anything. That’s the main thing people
-                        are controlled by! Thoughts- their perception of themselves! They're
-                        slowed down by their perception of themselves. If you're taught you
-                        can’t do anything, you won’t do anything. I was taught I could do
-                        everything.
-                    </p>
-                </ModalBody>
-                <ModalFooter>
-                <Button 
-                        color="red"
-                        buttonType="link"
-                        onClick={(e) => setShowModalCode(false)}
-                        ripple="dark"
-                    >
-                        Close
-                    </Button>
-
-                    <Button
-                        color="green"
-                        onClick={(e) => setShowModalCode(false)}
-                        ripple="light"
-                    >
-                        Save Changes
-                    </Button>
-                </ModalFooter>
-            </Modal>
         </>
     );
 }

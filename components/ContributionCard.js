@@ -40,6 +40,53 @@ export default function ContributionCard(props) {
         event.preventDefault();
         console.log(title, des, amount);
     };
+
+    const renderModal = () => {
+        if(props.requests.length === 0)
+            return <h2 class="text-gray-900 mt-10 text-xl">No Request</h2>;
+            
+        return (
+        <div class="grid grid-cols-4 m-4 p-2 text-gray-800 border-solid border-2 rounded-t-md divide-y">
+            <div class=" text-center border-solid border-2 p-4">
+                Title
+            </div>
+            <div class="text-center border-solid border-2 p-4">
+                Description
+            </div>
+            <div class="text-center border-solid border-2 p-4">
+                Amount
+            </div>
+            <div class="text-center  border-solid border-0 p-4">
+                Approve
+            </div>
+            
+            {props.requests.map((doc, index) => {
+                return (
+                    <>
+                        <div class="text-center border-solid border-2 p-4">
+                            {doc.title}
+                        </div>
+                        <div class="text-center border-solid border-2 p-4">
+                            {doc.description}
+                        </div>
+                        <div class="text-center border-solid border-2 p-4">
+                            {doc.amount}
+                        </div>
+                        <div class="m-auto " >
+                            <Button
+                                color="lightBlue"
+                                /*onClick={}*/
+                                ripple="light"
+                            >
+                                Approve
+                            </Button>
+                        </div>
+                    </>
+                )
+            })}
+        </div>
+        )
+    }
     return (
         <div className="" key={props.key}>
             <div class="max-w-sm mx-auto overflow-hidden bg-white rounded-lg shadow-lg dark:bg-gray-800 hover:scale-110 duration-150">
@@ -142,46 +189,8 @@ export default function ContributionCard(props) {
                     Add Request
                 </ModalHeader>
                 <ModalBody class="">
-                    <p class="text-gray-900">As a Contributor you can take decision on creater's idea. You can approve or not.</p>
-                    <div class="grid grid-cols-4 m-4 p-2 text-gray-800 border-solid border-2 rounded-t-md divide-y">
-                        <div class=" text-center border-solid border-2 p-4">
-                            Title
-                        </div>
-                        <div class="text-center border-solid border-2 p-4">
-                            Description
-                        </div>
-                        <div class="text-center border-solid border-2 p-4">
-                            Amount
-                        </div>
-                        <div class="text-center  border-solid border-0 p-4">
-                            Approve
-                        </div>
-                        
-                        {props.requests.map((doc, index) => {
-                            return (
-                                <>
-                                    <div class="text-center border-solid border-2 p-4">
-                                        {doc.title}
-                                    </div>
-                                    <div class="text-center border-solid border-2 p-4">
-                                        {doc.description}
-                                    </div>
-                                    <div class="text-center border-solid border-2 p-4">
-                                        {doc.amount}
-                                    </div>
-                                    <div class="m-auto " >
-                                        <Button
-                                            color="lightBlue"
-                                            /*onClick={}*/
-                                            ripple="light"
-                                        >
-                                            Approve
-                                        </Button>
-                                    </div>
-                                </>
-                            )
-                        })}
-                    </div>
+                    <p class="text-gray-900 mt-2 text-lg">As a Contributor you can take decision on creater's idea. You can approve or not.</p>
+                    {renderModal()}
                 </ModalBody>
             </Modal>
         </div>

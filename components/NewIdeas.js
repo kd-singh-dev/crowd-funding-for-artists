@@ -7,12 +7,15 @@ import TabPane from "@material-tailwind/react/TabPane";
 import ArtistCard from "./ArtistCard";
 
 export default function NewIdeas(props){
-    const [loading, setLoading] = useState(false);
-    
-    if(loading){
+    console.log(props.doc);
+    if(props.loading){
         return (
-            <>
-                Loaging...
+            <>  
+                <div></div>
+                <div class="m-auto mt-20 mb-20">
+                    <div class="w-24 h-24 border-l-2 border-white-900 rounded-full animate-spin"></div>
+                </div>
+                <div></div>
             </>
         )
     }

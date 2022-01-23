@@ -334,6 +334,7 @@ export default function Hero() {
    var d = [];
    var temp = [];
    useEffect(async ()=> {
+       setLoading(true);
    
         let signer;
         
@@ -376,15 +377,17 @@ export default function Hero() {
             "value": data[2].toString(),
             "currentStatus": "ONGOING",
             "rasied": data[3].toString(),
-            "likes": data[5].toString()
+            "likes": data[5].toString(),
+            "requests":[]
          })
         }
         console.log(d);
-      //   temp = d;
-         console.log(temp);
-         setDocs(temp)
-         setT(temp);
-         // i++;
+        //temp = d;
+        console.log(temp);
+        setDocs(temp)
+        setT(temp);
+        setLoading(false);
+        //i++;
         
     
     
@@ -514,14 +517,6 @@ export default function Hero() {
            ]
         
     //  ];*/
-    useEffect(() => {
-        setLoading(true);
-        setDocs(temp);
-        setDocs2(temp);
-        setLoading(false);
-        console.log(docs);
-        setDocs(docs);
-    },[t]);
     const mystyle = {
         width: '100%',
         height: '250px'
@@ -596,17 +591,17 @@ export default function Hero() {
                     <TabContent>
                         <TabPane active={openTab === 1 ? true : false}>
                             <div class="grid grid-cols-3 gap-10">
-                                <TrendingCard doc={docs}/>
+                                <TrendingCard doc={docs} loading={loading}/>
                             </div>
                         </TabPane>
                         <TabPane active={openTab === 2 ? true : false}>
                             <div class="grid grid-cols-3 gap-5">
-                                <NewIdeas doc={docs2}/>
+                                <NewIdeas doc={docs} loading={loading}/>
                             </div>
                         </TabPane>
                         <TabPane active={openTab === 3 ? true : false}>
                             <div class="grid grid-cols-3 gap-5">
-                                <MyContributions doc={docs}/>
+                                <MyContributions doc={docs} loading={loading}/>
                             </div>
                         </TabPane>
                         <TabPane active={openTab === 4 ? true : false}>
@@ -616,7 +611,7 @@ export default function Hero() {
                         </TabPane>
                         <TabPane active={openTab === 5 ? true : false}>
                             <div class="grid grid-cols-3 gap-5">
-                                <MyCampaigns doc={docs}/>
+                                <MyCampaigns doc={docs} loading={loading}/>
                             </div>
                         </TabPane>
                     </TabContent>

@@ -7,16 +7,18 @@ import TabPane from "@material-tailwind/react/TabPane";
 import ContributionCard from "./ContributionCard";
 
 export default function MyContributions(props){
-    const [loading, setLoading] = useState(false);
     
-    if(loading){
+    if(props.loading){
         return (
-            <>
-                Loaging...
+            <>  
+                <div></div>
+                <div class="m-auto mt-20 mb-20">
+                    <div class="w-24 h-24 border-l-2 border-white-900 rounded-full animate-spin"></div>
+                </div>
+                <div></div>
             </>
         )
     }
-    console.log(props.doc);
     return (
         <>
             {props.doc.map((doc, index) => {

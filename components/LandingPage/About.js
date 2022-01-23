@@ -9,10 +9,17 @@ function About() {
                     <h1 className="title-font sm:text-4xl text-3xl mb-4 font-medium text-white">About Money Money
                         <br className="hidden lg:inline-block" />
                     </h1>
-                    <p  className="mb-8 leading-relaxed">Docstream empowers you to start making your content right away without having to worry about any registeration process <br/>
-                    Start right away by creating the link of your own domain of choice with any password of your choice! <br/>
-                    Share your link to any person of your choice and start working on the document right away! <br/>
-                    Further, we offer options to export your document as a PDF with DRM inspired encryption protection</p>
+                    <p  className="mb-8 leading-relaxed">
+                        Money Money is a decentralized crowdfunding platform that allows you to raise funds for your project.<br/>
+                        Money money list all the crowdfunding campaign Going around the world which is registered in the Web app In a full decentralized manner.<br/>
+                    </p>
+                        <ol class="">
+                            <li>The Web app shows the trending ideas which have got more likes</li>
+                            <li>New ideas section shows all the newly found campaigns</li>
+                            <li>My contribution tab shows all the campaigns that you have contributed into</li>
+                            <li>New campaign allows the user to start a new crowdfunding campaign for their idea</li>
+                            <li>My campaign list all the campaigns started by the user on that particular account address</li>
+                        </ol>
                     
                 </div>
             </div>
