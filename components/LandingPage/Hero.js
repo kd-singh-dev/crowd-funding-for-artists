@@ -436,7 +436,6 @@ export default function Hero() {
             }
             console.log("My camp add",campCol);
 
-<<<<<<< HEAD
             for(let a = 0;a<campCol.length;a++){
                 //console.log(arr[a]);
                 const campContract = new ethers.Contract(campCol[a],campAbi,signer);
@@ -463,9 +462,7 @@ export default function Hero() {
             
        }
     
-=======
     /*
->>>>>>> 52faee89493b75f47f2d1c2a2ef520b4ad159f3a
   // console.log(await t())}
     //console.log(d);
     
