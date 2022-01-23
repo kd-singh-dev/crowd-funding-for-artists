@@ -17,6 +17,9 @@ import ModalFooter from "@material-tailwind/react/ModalFooter";
 import Input from "@material-tailwind/react/Input";
 import Textarea from "@material-tailwind/react/Textarea";
 
+import { ethers } from 'ethers'
+import Web3Modal from 'web3modal'
+
 
 export default function CampaignsCard(props) {
     const [showModal, setShowModal] = useState(false);
@@ -27,6 +30,241 @@ export default function CampaignsCard(props) {
     const [amount, setAmount] = useState(0);
     const [liked, setLiked] = useState(false);
     const [likes, setLikes] = useState(0);
+
+    const campAbi = [
+        {
+            "inputs": [
+                {
+                    "internalType": "string",
+                    "name": "title",
+                    "type": "string"
+                },
+                {
+                    "internalType": "string",
+                    "name": "desc",
+                    "type": "string"
+                },
+                {
+                    "internalType": "uint256",
+                    "name": "goal",
+                    "type": "uint256"
+                },
+                {
+                    "internalType": "string",
+                    "name": "pic",
+                    "type": "string"
+                },
+                {
+                    "internalType": "string",
+                    "name": "pitch",
+                    "type": "string"
+                }
+            ],
+            "stateMutability": "nonpayable",
+            "type": "constructor"
+        },
+        {
+            "inputs": [
+                {
+                    "internalType": "uint256",
+                    "name": "index",
+                    "type": "uint256"
+                }
+            ],
+            "name": "approvalRequest",
+            "outputs": [],
+            "stateMutability": "nonpayable",
+            "type": "function"
+        },
+        {
+            "inputs": [],
+            "name": "c",
+            "outputs": [
+                {
+                    "internalType": "string",
+                    "name": "_title",
+                    "type": "string"
+                },
+                {
+                    "internalType": "string",
+                    "name": "_desc",
+                    "type": "string"
+                },
+                {
+                    "internalType": "uint256",
+                    "name": "_goal",
+                    "type": "uint256"
+                },
+                {
+                    "internalType": "uint256",
+                    "name": "_collected",
+                    "type": "uint256"
+                },
+                {
+                    "internalType": "uint256",
+                    "name": "_ig",
+                    "type": "uint256"
+                },
+                {
+                    "internalType": "uint256",
+                    "name": "_likes",
+                    "type": "uint256"
+                },
+                {
+                    "internalType": "enum Campaign.status",
+                    "name": "s",
+                    "type": "uint8"
+                },
+                {
+                    "internalType": "string",
+                    "name": "_pic",
+                    "type": "string"
+                },
+                {
+                    "internalType": "string",
+                    "name": "_pitch",
+                    "type": "string"
+                }
+            ],
+            "stateMutability": "view",
+            "type": "function"
+        },
+        {
+            "inputs": [],
+            "name": "contribute",
+            "outputs": [],
+            "stateMutability": "payable",
+            "type": "function"
+        },
+        {
+            "inputs": [
+                {
+                    "internalType": "string",
+                    "name": "description",
+                    "type": "string"
+                },
+                {
+                    "internalType": "uint256",
+                    "name": "value",
+                    "type": "uint256"
+                },
+                {
+                    "internalType": "address",
+                    "name": "recipient",
+                    "type": "address"
+                }
+            ],
+            "name": "createRequest",
+            "outputs": [],
+            "stateMutability": "nonpayable",
+            "type": "function"
+        },
+        {
+            "inputs": [
+                {
+                    "internalType": "uint256",
+                    "name": "index",
+                    "type": "uint256"
+                }
+            ],
+            "name": "finalizeRequest",
+            "outputs": [],
+            "stateMutability": "nonpayable",
+            "type": "function"
+        },
+        {
+            "inputs": [],
+            "name": "likeCamp",
+            "outputs": [],
+            "stateMutability": "nonpayable",
+            "type": "function"
+        },
+        {
+            "inputs": [],
+            "name": "manager",
+            "outputs": [
+                {
+                    "internalType": "address",
+                    "name": "",
+                    "type": "address"
+                }
+            ],
+            "stateMutability": "view",
+            "type": "function"
+        },
+        {
+            "inputs": [],
+            "name": "minAmount",
+            "outputs": [
+                {
+                    "internalType": "uint256",
+                    "name": "",
+                    "type": "uint256"
+                }
+            ],
+            "stateMutability": "view",
+            "type": "function"
+        },
+        {
+            "inputs": [],
+            "name": "req",
+            "outputs": [
+                {
+                    "internalType": "uint256",
+                    "name": "",
+                    "type": "uint256"
+                }
+            ],
+            "stateMutability": "view",
+            "type": "function"
+        },
+        {
+            "inputs": [
+                {
+                    "internalType": "uint256",
+                    "name": "",
+                    "type": "uint256"
+                }
+            ],
+            "name": "requests",
+            "outputs": [
+                {
+                    "internalType": "string",
+                    "name": "description",
+                    "type": "string"
+                },
+                {
+                    "internalType": "uint256",
+                    "name": "value",
+                    "type": "uint256"
+                },
+                {
+                    "internalType": "address",
+                    "name": "recipient",
+                    "type": "address"
+                },
+                {
+                    "internalType": "bool",
+                    "name": "complete",
+                    "type": "bool"
+                },
+                {
+                    "internalType": "uint256",
+                    "name": "approvalCount",
+                    "type": "uint256"
+                }
+            ],
+            "stateMutability": "view",
+            "type": "function"
+        },
+        {
+            "inputs": [],
+            "name": "unlikeCamp",
+            "outputs": [],
+            "stateMutability": "nonpayable",
+            "type": "function"
+        }
+    ];
     
     useEffect(() => {
         setLikes(props.likes);
@@ -56,6 +294,21 @@ export default function CampaignsCard(props) {
         event.preventDefault();
         console.log(title, des, amount);
     };
+
+    const handleRequest = async (e) => {
+    // e.preventDefault();
+        console.log("Create Request!!");
+        const web3Modal = new Web3Modal();
+        const connection = await web3Modal.connect();
+        const provider = new ethers.providers.Web3Provider(connection);
+        const signer = provider.getSigner();
+
+        const campContract = new ethers.Contract(props.complete,campAbi,signer);
+
+        const tx = campContract.createRequest(des,amount,title);
+        console.log(tx);
+
+    }
     return (
         <div className="" key={props.key}>
             <div class="max-w-sm mx-auto overflow-hidden bg-white rounded-lg shadow-lg dark:bg-gray-800 hover:scale-110 duration-150">
@@ -191,7 +444,7 @@ export default function CampaignsCard(props) {
                 <ModalFooter>
                     <Button
                         color="lightBlue"
-                        /*onClick={}*/
+                        onClick={handleRequest()}
                         ripple="light"
                     >
                         Save
