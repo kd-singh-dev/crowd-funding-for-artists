@@ -62,8 +62,8 @@ export default function CampaignsCard(props) {
                 </div>
                 <CardFooter>
                     <div class="p-2 float-left">
-                        <Button color="lightBlue" /*onClick={}*/ size="lg" ripple="light" >
-                            Contribute
+                        <Button color="lightBlue" onClick={(e) => setShowModal(true)} size="lg" ripple="light" >
+                            Read More..
                         </Button>
                     </div>
                     <div class="px-2 text-sm mt-2 mb-2 text-gray-700 dark:text-gray-200 float-right">
@@ -85,11 +85,6 @@ export default function CampaignsCard(props) {
                         </div>
                     </div>
                     <div class="">
-                        <div class="p-2 w-1/2 ">
-                            <Button color="gray" size="lg" ripple="light" onClick={(e) => setShowModal(true)}>
-                                Read More..
-                            </Button>
-                        </div>
                         <div class="p-2 w-1/2 ">
                             <Button color="amber" size="lg" ripple="light" onClick={(e) => setShowModal2(true)}>
                                 Request
